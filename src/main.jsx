@@ -4,10 +4,10 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./styles/global.css";
 
-// We use import.meta.env.DEV to check if you are running 'npm run dev' locally!
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/memory_game_/"}>
+    {/* Notice: '/memory_game_' has NO slash at the end! */}
+    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/memory_game_"}>
       <App />
     </BrowserRouter>
   </React.StrictMode>,
