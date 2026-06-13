@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+// 1. Import HashRouter instead of BrowserRouter
+import { HashRouter } from "react-router-dom";
 import App from "./App.jsx";
 import "./styles/global.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    {/* Notice: '/memory_game_' has NO slash at the end! */}
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/memory_game_"}>
+    {/* 2. HashRouter doesn't need a tricky basename! */}
+    <HashRouter>
       <App />
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
 );
