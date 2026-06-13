@@ -32,19 +32,6 @@ const SettingsPanel = ({ settings, setSettings }) => {
         </select>
       </div>
 
-      <div className="form-group">
-        <label htmlFor="theme">UI Theme</label>
-        <select
-          name="theme"
-          id="theme"
-          value={settings.theme}
-          onChange={handleChange}
-        >
-          <option value="Dark Workshop">Dark Workshop</option>
-          <option value="Light Garage">Light Garage</option>
-        </select>
-      </div>
-
       <button
         className="btn"
         onClick={startGame}

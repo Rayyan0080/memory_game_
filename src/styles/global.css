@@ -1,28 +1,15 @@
 :root {
   --font-heading: "Poppins", sans-serif;
   --font-body: "Roboto", sans-serif;
-}
 
-/* Dark Workshop Theme (Default) */
-.theme-dark {
-  --bg-color: #222222;
-  --surface-color: #333333;
-  --text-primary: #ffffff;
-  --text-secondary: #cccccc;
-  --accent-color: #ff6b00;
-  --card-bg: #444444;
-  --success: #28a745;
-  --danger: #dc3545;
-}
-
-/* Light Garage Theme */
-.theme-light {
-  --bg-color: #f4f4f4;
-  --surface-color: #ffffff;
-  --text-primary: #111111;
-  --text-secondary: #555555;
-  --accent-color: #0056b3;
-  --card-bg: #e2e2e2;
+  /* Permanent Deep Dark Mode Variables */
+  --bg-color: #121212; /* Deep charcoal background */
+  --surface-color: #1e1e1e; /* Slightly lighter for panels/navbar */
+  --text-primary: #ffffff; /* Pure white text for high contrast */
+  --text-secondary: #a0a0a0; /* Muted gray for less important text */
+  --accent-color: #ff6b00; /* Vibrant Mechanic Orange */
+  --card-bg: #2c2c2c; /* Dark gray for memory cards */
+  --card-hover: #3a3a3a; /* Lighter gray for hover states */
   --success: #28a745;
   --danger: #dc3545;
 }
@@ -37,6 +24,7 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-color);
   color: var(--text-primary);
+  /* Smooth transition if you ever add themes back */
   transition:
     background-color 0.3s,
     color 0.3s;
@@ -46,6 +34,7 @@ h1,
 h2,
 h3 {
   font-family: var(--font-heading);
+  letter-spacing: 1px;
 }
 
 .app-container {
@@ -59,7 +48,8 @@ h3 {
   justify-content: space-between;
   padding: 1.5rem 2rem;
   background-color: var(--surface-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Stronger shadow for depth */
+  border-bottom: 1px solid #333;
 }
 
 .nav-links a {
@@ -67,6 +57,7 @@ h3 {
   text-decoration: none;
   margin-left: 1.5rem;
   font-weight: bold;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover,
@@ -82,6 +73,7 @@ h3 {
   flex-grow: 1;
 }
 
+/* Buttons */
 .btn {
   padding: 0.8rem 1.5rem;
   border: none;
@@ -92,53 +84,68 @@ h3 {
   cursor: pointer;
   background-color: var(--accent-color);
   color: #fff;
-  transition:
-    opacity 0.2s,
-    transform 0.1s;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(255, 107, 0, 0.2);
 }
 
 .btn:hover {
   opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 107, 0, 0.4);
 }
+
 .btn:active {
   transform: scale(0.98);
 }
+
 .btn:focus-visible {
   outline: 3px solid #fff;
   outline-offset: 2px;
 }
 
-/* Home / Settings Panel */
+/* Panels and Forms */
 .settings-panel {
   background: var(--surface-color);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 12px;
   max-width: 600px;
   margin: 2rem auto;
+  border: 1px solid #333;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .form-group {
   margin-bottom: 1.5rem;
+  text-align: left;
 }
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
+  color: var(--text-primary);
 }
+
 .form-group select {
   width: 100%;
   padding: 0.8rem;
-  border-radius: 4px;
-  border: 1px solid var(--text-secondary);
+  border-radius: 6px;
+  border: 1px solid #444;
   background: var(--bg-color);
   color: var(--text-primary);
   font-size: 1rem;
+  cursor: pointer;
+}
+
+.form-group select:focus {
+  outline: 2px solid var(--accent-color);
+  border-color: transparent;
 }
 
 /* Game Board */
 .game-container {
   text-align: center;
 }
+
 .memory-board {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -150,30 +157,34 @@ h3 {
 .memory-card {
   aspect-ratio: 1;
   background-color: var(--card-bg);
-  border: 4px solid transparent;
+  border: 4px solid #444;
   border-radius: 12px;
-  font-size: 3rem;
+  font-size: 3.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text-primary);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-.memory-card:hover {
+.memory-card:hover:not(:disabled) {
   transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  background-color: var(--card-hover);
+  border-color: #666;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
+
 .memory-card.active {
   background-color: var(--accent-color);
   border-color: #fff;
   transform: scale(1.05);
-  box-shadow: 0 0 20px var(--accent-color);
+  box-shadow: 0 0 25px var(--accent-color);
 }
+
 .memory-card:disabled {
   cursor: not-allowed;
-  opacity: 0.8;
 }
 
 .status-text {
@@ -181,4 +192,5 @@ h3 {
   font-size: 1.5rem;
   font-weight: bold;
   height: 2rem;
+  color: var(--accent-color);
 }
